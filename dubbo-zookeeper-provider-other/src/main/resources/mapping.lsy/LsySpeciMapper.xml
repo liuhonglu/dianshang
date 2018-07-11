@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jk.mapper.lsy.LsyISpeciMapper">
+    <!--//总条数-->
+    <select id="queryCount" resultType="long">
+        SELECT count(*)
+        FROM lsy_specification
+        WHERE 1 = 1
+        <if test="speci.specname != null and speci.specname != ''">
+            and specname like '%${speci.specname}%'
+        </if>
+        <if test="speci.specidesc != null and speci.specidesc != ''">
+            AND specidesc like '%${speci.specidesc}%'
+        </if>
+    </select>
+    <!--查询规格集合-->
+    <select id="querySpeciPage" resultType="com.jk.model.lsyspecificationEntity">
+              select * from lsy_specification
+                   where 1 = 1
+                    <if test="speci.specname != null and speci.specname != ''">
+                        and specname  like '%${speci.specname}%'
+                    </if>
+                    <if test="speci.specidesc != null and speci.specidesc != ''">
+                        AND specidesc like '%${speci.specidesc}%'
+                    </if>
+                    order by speciorder
+                limit #{start},#{rows}
+    </select>
+    <!--查询规格的规格值集合-->
+    <select id="querySpeciVla" resultType="com.jk.model.lsyspecivalueEntity">
+        SELECT  * FROM lsy_speci_value WHERE speciid = #{speciid}
+    </select>
+    <!--删除选中的规格-->
+    <delete id="delSpeci">
+        DELETE FROM lsy_specification WHERE speciid in (${speciid})
+    </delete>
+    <!--删除选中的规格的值-->
+    <delete id="delValOfSpeci">
+        DELETE FROM lsy_speci_value WHERE speciid in (${speciid})
+    </delete>
+</mapper>

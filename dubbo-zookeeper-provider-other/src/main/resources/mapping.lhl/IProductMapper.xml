@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jk.mapper.lhl.IProductMapper">
+
+    <select id="count" resultType="long">
+        SELECT count(*) FROM lhl_product
+    </select>
+
+    <select id="queryproduct" resultType="com.jk.model.Product">
+        SELECT * FROM lhl_product limit #{start},#{rows}
+    </select>
+    
+    <delete id="deleteproduct">
+        delete from lhl_product where sn in (#{id})
+    </delete>
+    
+    <insert id="insertproduct">
+        insert into lhl_product values(#{product.sn},#{product.name},#{product.procount},#{product.xiaoshoujia},#{product.chengbenjia},#{product.kecun},#{product.shangjia},#{product.createtime});
+    </insert>
+
+    <select id="queryproductbyid" resultType="com.jk.model.Product">
+        SELECT * FROM lhl_product where sn = #{id}
+    </select>
+    
+    <update id="updateproduct">
+        UPDATE lhl_product set name=,#{product.name},procount=#{product.procount},xiaoshoujia=#{product.xiaoshoujia},chengbenjia=#{product.chengbenjia},kecun=#{product.kecun},shangjia=#{product.shangjia},createtime=#{product.createtime} where sn = #{product.sn}
+    </update>
+
+</mapper>

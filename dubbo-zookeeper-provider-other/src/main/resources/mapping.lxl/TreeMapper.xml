@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jk.mapper.lhl.adsd">
-
-
+<mapper namespace="com.jk.mapper.lxl.LxlMapper">
+    <select id="queryCount" resultType="long">
+        SELECT COUNT(*) FROM xx_brand2 WHERE 1=1
+    </select>
+    <select id="queryBrandPage" resultType="com.jk.model.Brand">
+        SELECT * FROM xx_brand2 WHERE 1=1 limit #{start},#{rows}
+    </select>
+    <insert id="addBrand">
+        INSERT INTO xx_brand2 (id,NAME,TYPE,logo,url,sorting,introduction)VALUES(#{id},#{name},#{type},#{logo},#{url},#{sorting},#{introduction})
+    </insert>
+    <delete id="delBrand">
+        DELETE FROM xx_brand2 WHERE id = #{id}
+    </delete>
+    <select id="queryBrandById" resultType="com.jk.model.Brand">
+        SELECT * FROM xx_brand2 WHERE id = #{id}
+    </select>
+    <update id="editBrand">
+        UPDATE xx_brand2 SET NAME=#{name},TYPE=#{type},logo=#{logo},url=#{url},sorting=#{sorting},introduction=#{introduction}
+        WHERE id = #{id}
+    </update>
 </mapper>

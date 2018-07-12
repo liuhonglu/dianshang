@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jk.mapper.hdd.HddotherMapper">
+
+    <resultMap type="com.jk.model.ProductCategory" id="pc">
+        <id column="id" property="id"/>
+        <result column="name" property="name"></result>
+        <result column="seotitle" property="seotitle"></result>
+        <result column="seokeywords" property="seokeywords"></result>
+        <result column="seodescription" property="seodescription"></result>
+        <result column="treepath" property="treepath"></result>
+        <result column="grade" property="grade"></result>
+        <result column="parent" property="parent"></result>
+        <result column="orders" property="orders"></result>
+        <result column="createdate" property="createdate"></result>
+        <result column="modifydate" property="modifydate"></result>
+    </resultMap>
+
+    <select id="queryproductcategorylist" resultMap="pc">
+        SELECT  * from  hdd_product_category order by orders
+    </select>
+
+ <delete id="deletepc">
+     delete from hdd_product_category where id in (${ids})
+ </delete>
+<!--savepc-->
+
+
+
+<insert id="savepc">
+
+        insert into hdd_product_category (id,name,seotitle,seokeywords,seodescription,parent,orders,createdate) values
+           (#{id},
+           #{name},
+           #{seotitle},
+           #{seokeywords},
+           #{seodescription},
+           #{parent},
+           #{orders},
+           CURDATE()
+            )
+       </insert>
+
+
+
+
+
+
+<!--回显updateById-->
+    <select id="updateById" resultMap="pc">
+        select * from hdd_product_category where id = ${id}
+    </select>
+
+
+    <!--修改updatePc-->
+   <update id="updatePc">
+
+        UPDATE  hdd_product_category set
+
+                     name =  #{name},
+                     seotitle =  #{seotitle},
+                     seokeywords =  #{seokeywords},
+                      seodescription = #{seodescription},
+                      parent = #{parent},
+                      orders = #{orders},
+                       modifydate = #{modifydate}
+                       where id = #{id}
+
+
+
+    </update>
+
+
+
+</mapper>

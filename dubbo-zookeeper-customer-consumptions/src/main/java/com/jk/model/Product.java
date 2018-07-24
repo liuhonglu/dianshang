@@ -30,6 +30,7 @@ public class Product implements Serializable {
 	/*创建日期*/
 	private String createtime;
 
+	private String images;
 
 	public static long getSerialVersionUID() {
 		return serialVersionUID;
@@ -99,6 +100,14 @@ public class Product implements Serializable {
 		this.createtime = createtime;
 	}
 
+	public String getImages() {
+		return images;
+	}
+
+	public void setImages(String images) {
+		this.images = images;
+	}
+
 	@Override
 	public String toString() {
 		return "Product{" +
@@ -110,6 +119,7 @@ public class Product implements Serializable {
 				", kecun='" + kecun + '\'' +
 				", shangjia='" + shangjia + '\'' +
 				", createtime='" + createtime + '\'' +
+				", images='" + images + '\'' +
 				'}';
 	}
 }

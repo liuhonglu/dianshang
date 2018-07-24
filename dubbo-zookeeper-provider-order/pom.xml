@@ -245,7 +245,7 @@
     <dependency>
       <groupId>opensymphony</groupId>
       <artifactId>oscache</artifactId>
-      <version>2.4</version>
+      <version>2.4.1</version>
     </dependency>
     <!-- maven配置httpclient jar包 -->
     <dependency>

@@ -34,6 +34,10 @@ import javax.annotation.Resource;
 public class AttributeController {
     @Autowired
     private AttributeService service;
+    @RequestMapping("list")
+    public String list(){
+        return "zm/attribute";
+    }
     @RequestMapping("querylist")
     @ResponseBody
     public JSONObject querylist(Integer page, Integer rows, String name){

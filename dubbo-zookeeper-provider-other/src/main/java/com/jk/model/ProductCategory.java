@@ -46,17 +46,6 @@ public class ProductCategory implements Serializable {
     private String modifydate ;
 
 
-
-    private String  brandIds ;
-
-    public String getBrandIds() {
-        return brandIds;
-    }
-
-    public void setBrandIds(String brandIds) {
-        this.brandIds = brandIds;
-    }
-
     public String getId() {
         return id;
     }
@@ -169,7 +158,6 @@ public class ProductCategory implements Serializable {
                 ", children=" + children +
                 ", createdate='" + createdate + '\'' +
                 ", modifydate='" + modifydate + '\'' +
-                ", brandIds='" + brandIds + '\'' +
                 '}';
     }
 }

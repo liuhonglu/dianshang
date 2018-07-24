@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>品牌列表</title>
     <jsp:include page="/js/jsAll.jsp"></jsp:include>
 </head>
 <body>

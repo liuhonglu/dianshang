@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.jk.model.lsyspecificationEntity;
 import com.jk.service.lsy.LsyISpeciService;
 import com.jk.service.lsy.LsyISpeciService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,7 +15,7 @@ import java.util.HashMap;
 @Controller
 @RequestMapping("LsySpeci")
 public class LsySpeciController {
-    @Resource
+    @Autowired
     private LsyISpeciService lsyISpeciService;
     //查询规格并分页
     @RequestMapping("querySpeciPage")

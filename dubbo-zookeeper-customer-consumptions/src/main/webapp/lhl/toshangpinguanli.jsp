@@ -1,18 +1,189 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2018/7/9 0009
-  Time: 17:59
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>商品管理</title>
+    <link href="<%=request.getContextPath()%>/resources/admin/css/common.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+
+        function yishangjia(){
+            $.ajax({
+                url:"<%=request.getContextPath()%>/productcontroller/queryyishangjia.lhtml",
+                type:"post",
+                dataType:"json",
+            })
+        }
+        function weishengjia(){
+            $.ajax({
+                url:"<%=request.getContextPath()%>/productcontroller/queryweishengjia.lhtml",
+                type:"post",
+                dataType:"json",
+            })
+        }
+        function lianyiqun(){
+            $.ajax({
+                url:"<%=request.getContextPath()%>/productcontroller/querylianyiqun.lhtml",
+                type:"post",
+                dataType:"json",
+            })
+        }
+        function chenyi(){
+            $.ajax({
+                url:"<%=request.getContextPath()%>/productcontroller/querychenyi.lhtml",
+                type:"post",
+                dataType:"json",
+            })
+        }
+        function sushenyi(){
+            $.ajax({
+                url:"<%=request.getContextPath()%>/productcontroller/querysushenyi.lhtml",
+                type:"post",
+                dataType:"json",
+            })
+        }
+        function shuiyi(){
+            $.ajax({
+                url:"<%=request.getContextPath()%>/productcontroller/queryshuiyi.lhtml",
+                type:"post",
+                dataType:"json",
+            })
+        }
+        function kuzi(){
+            $.ajax({
+                url:"<%=request.getContextPath()%>/productcontroller/querykuzi.lhtml",
+                type:"post",
+                dataType:"json",
+            })
+        }
+        function xiaoxizhuang(){
+            $.ajax({
+                url:"<%=request.getContextPath()%>/productcontroller/queryxiaoxizhuang.lhtml",
+                type:"post",
+                dataType:"json",
+            })
+        }
+        function tixu(){
+            $.ajax({
+                url:"<%=request.getContextPath()%>/productcontroller/querytixu.lhtml",
+                type:"post",
+                dataType:"json",
+            })
+        }
+
+
+    </script>
 </head>
 <body>
 
-    <table id="shangpinguanli_table_datagrid"></table>
+<table id="shangpinguanli_table_datagrid"></table>
+
+<div class="bar">
+    <a href="/lhl/addshangpinguanli.jsp" class="iconButton">
+  <%--  <a href="javascript:xinzenglhl()" class="iconButton">--%>
+        <span class="addIcon">&nbsp;</span>添加
+    </a>
+    <div class="buttonWrap">
+        <a href="javascript:deleteshangpinguanli()" id="deleteButton" class="iconButton disabled">
+            <span class="deleteIcon">&nbsp;</span>删除
+        </a>
+        <a href="javascript:toshangpinguanli()" id="refreshButton" class="iconButton">
+            <span class="refreshIcon">&nbsp;</span>刷新
+        </a>
+        <div class="menuWrap">
+            <a href="javascript:;" id="filterSelect" class="button" >
+                商品筛选<span class="arrow" >&nbsp;</span>
+            </a>
+            <div class="popupMenu">
+                <ul id="filterOption" class="check">
+                    <li>
+                        <a href="javascript:yishangjia();" >已上架</a>
+                    </li>
+                    <li>
+                        <a href="javascript:weishengjia();" >未上架</a>
+                    </li>
+                    <li class="separator">
+                        <a href="javascript:lianyiqun();" >连衣裙</a>
+                    </li>
+                    <li>
+                        <a href="javascript:chenyi();" >衬衣</a>
+                    </li>
+                    <li class="separator">
+                        <a href="javascript:sushenyi();" >塑身衣</a>
+                    </li>
+                    <li>
+                    <a href="javascript:shuiyi();" >睡衣</a>
+                    </li>
+                    <li>
+                        <a href="javascript:kuzi();" >裤子</a>
+                    </li>
+                    <li>
+                        <a href="javascript:xiaoxizhuang();" >小西装</a>
+                    </li>
+                    <li>
+                        <a href="javascript:tixu();"  >T恤</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <jsp:include page="/js/jsAll.jsp"></jsp:include>
+
+    <script type="text/javascript">
+        function deleteshangpinguanli(){
+
+            var array = $("#shangpinguanli_table_datagrid").datagrid("getChecked");
+            var str = "";
+            for(var i = 0; i < array.length; i++){
+                str += ",'"+array[i]['sn']+"'";
+            }
+            str=str.substring(1);
+            $.ajax({
+                url:"<%=request.getContextPath()%>/productcontroller/deleteproduct.lhtml?sn="+str,
+                type:"post",
+                dataType:"json",
+                success:function(result){
+                    toshangpinguanli();
+                    $.messager.alert('警告','删除成功');
+                }
+            })
+        }
+
+    </script>
+
+<script type="text/javascript">
+
+    var $listForm = $("#listForm");
+    var $moreButton = $("#moreButton");
+    var $filterSelect = $("#filterSelect");
+    var $filterOption = $("#filterOption a");
+    // 商品筛选
+    $filterSelect.mouseover(function() {
+        var $this = $(this);
+        var offset = $this.offset();
+        var $menuWrap = $this.closest("div.menuWrap");
+        var $popupMenu = $menuWrap.children("div.popupMenu");
+        $popupMenu.css({left: offset.left, top: offset.top + $this.height() + 2}).show();
+        $menuWrap.mouseleave(function() {
+            $popupMenu.hide();
+        });
+    });
+
+    // 筛选选项
+    $filterOption.click(function() {
+        var $this = $(this);
+        var $dest = $("#" + $this.attr("name"));
+        if ($this.hasClass("checked")) {
+            $dest.val("");
+        } else {
+            $dest.val($this.attr("val"));
+        }
+        $listForm.submit();
+        return false;
+    });
+
+</script>
+
 
 <script>
 
@@ -27,13 +198,14 @@
             remoteSort: false,
             pagination:true,
             singleSelect:true,
-            checkOnSelect:false,
-            selectOnCheck:true,
+            checkOnSelect:true,
+            selectOnCheck:false,
             pagePosition:'bottom',
             pageNumber:1,
             pageSize:5,
             pageList:[5,10,20,30],
             columns:[[
+                {field:'ace',checkbox:true},
                 {field:'sn',title:'编号',width:100,align:'center',sortable:true,
                     sorter:function(a,b){
                         a = a.split('/');
@@ -177,7 +349,7 @@
                 {field:'price',title:'操作',width:100,align:'center',
                     formatter:function(value,row,index){
                         if(row.shangjia==1){
-                            return "<a href='javascript:#' >[编辑]</a><a href='javascript:#' >[查看]</a>";
+                            return "<a href='javascript::<%=request.getContextPath()%>/productcontroller/queryproductbyid.lhtml' >[编辑]</a><a href='javascript#' >[查看]</a>";
                         }
                         if(row.shangjia==2){
                             return "<a href='javascript:#' >[编辑]</a>[未上架]";

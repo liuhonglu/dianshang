@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jk.mapper.lhl.ImerchandiseMapper">
+
+    <select id="querykuaididanmobanquery" resultType="com.jk.model.KuaiDiDanmoban">
+        select * from lhl_kuaididanmoban
+    </select>
+
+    <update id="editstatusyi">
+       update lhl_kuaididanmoban set shifoumoren=2 where id=#{id}
+    </update>
+
+    <update id="editstatuser">
+        update lhl_kuaididanmoban set shifoumoren=1 where id=#{id}
+    </update>
+
+    <select id="queryfahuodianguanlilist" resultType="com.jk.model.FaHuoDianGuanLi" >
+        SELECT * FROM lhl_fahuodianguanli t1,sys_user t2 WHERE t1.`userid`=t2.`id`
+    </select>
+
+    <select id="toeditfahuodianguanli" resultType="com.jk.model.FaHuoDianGuanLi" >
+        SELECT * FROM lhl_fahuodianguanli t1,sys_user t2 WHERE t1.`userid`=t2.`id` and t1.id = #{id}
+    </select>
+
+    <update id="editfahuodanguanli" >
+      update  lhl_fahuodianguanli set  fahuodianname=#{fahuodianname},  lianxiren=#{lianxiren}, regionname=#{regionname}, sitedizhi=#{sitedizhi},  youbian=#{youbian},  telephone=#{telephone},  phone=#{phone},  moren=#{moren}  where id=#{id}
+    </update>
+
+    <insert id="addfahuodianguanli">
+        INSERT INTO lhl_fahuodianguanli(id,fahuodianname,lianxiren,regionname,sitedizhi,youbian,telephone,phone,moren,userid) VALUES(#{fahuodianguanli.id},#{fahuodianguanli.fahuodianname},#{fahuodianguanli.lianxiren},#{fahuodianguanli.regionname},#{fahuodianguanli.sitedizhi},#{fahuodianguanli.youbian},#{fahuodianguanli.telephone},#{fahuodianguanli.phone},#{fahuodianguanli.moren},#{fahuodianguanli.userid})
+    </insert>
+
+    <delete id="deletefahuodianguanli" >
+        DELETE FROM lhl_fahuodianguanli WHERE id in (${ids})
+    </delete>
+
+    <insert id="insertkuaididanmoban">
+      INSERT INTO lhl_kuaididanmoban(id,kuaidiname,beizhu,shifoumoren) VALUES(#{kuaididanmokuai.id},#{kuaididanmokuai.kuaidiname},#{kuaididanmokuai.beizhu},#{kuaididanmokuai.shifoumoren})
+    </insert>
+
+    <delete id="deletekuaididan">
+        DELETE FROM lhl_kuaididanmoban WHERE id in (${ids})
+    </delete>
+
+    <!--退货管理-->
+
+
+</mapper>

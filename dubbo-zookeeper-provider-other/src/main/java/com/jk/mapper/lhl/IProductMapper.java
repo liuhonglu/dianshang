@@ -14,12 +14,30 @@ public interface IProductMapper {
 
      List<Product> queryproduct(@Param("start") Integer start, @Param("rows") Integer rows);
 
-     void deleteproduct(@Param("id") String id);
+     void deleteproduct(@Param("id") String sn);
 
     void insertproduct(@Param("product") Product product);
 
     Product queryproductbyid(@Param("id") String id);
 
     void updateproduct(@Param("product") Product product);
+
+    List<Product> queryyishangjia();
+
+    List<Product> weishengjia();
+
+    List<Product> lianyiqun();
+
+    List<Product> chenyi();
+
+    List<Product> sushenyi();
+
+    List<Product> shuiyi();
+
+    List<Product> kuzi();
+
+    List<Product> xiaoxizhuang();
+
+    List<Product>  tixu();
 
 }

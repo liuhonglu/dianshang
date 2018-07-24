@@ -8,6 +8,8 @@ import com.jk.service.lhl.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.UUID;
 
@@ -59,6 +61,60 @@ public class IProductServiceImpl implements IProductService{
     @Override
     public void updateproduct(Product product) {
         productMapper.updateproduct(product);
+    }
+
+    @Override
+    public List<Product> queryyishangjia() {
+        List<Product> list = productMapper.queryyishangjia();
+        return list;
+    }
+
+    @Override
+    public List<Product> weishengjia() {
+        List<Product> list = productMapper.weishengjia();
+        return list;
+    }
+
+    @Override
+    public List<Product> lianyiqun() {
+        List<Product> list = productMapper.lianyiqun();
+        return list;
+    }
+
+    @Override
+    public List<Product> chenyi() {
+        List<Product> list = productMapper.chenyi();
+        return list;
+    }
+
+    @Override
+    public List<Product> sushenyi() {
+        List<Product> list = productMapper.sushenyi();
+        return list;
+    }
+
+    @Override
+    public List<Product> shuiyi() {
+        List<Product> list = productMapper.shuiyi();
+        return list;
+    }
+
+    @Override
+    public List<Product> kuzi() {
+        List<Product> list = productMapper.kuzi();
+        return list;
+    }
+
+    @Override
+    public List<Product> xiaoxizhuang() {
+        List<Product> list = productMapper.xiaoxizhuang();
+        return list;
+    }
+
+    @Override
+    public List<Product> tixu() {
+        List<Product> list = productMapper.tixu();
+        return list;
     }
 
 

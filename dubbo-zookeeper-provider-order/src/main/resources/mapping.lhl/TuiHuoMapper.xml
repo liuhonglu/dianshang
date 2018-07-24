@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jk.mapper.lhl.ITuiHuiMapper">
+
+    <select id="querytuihuoguanlilist" resultType="com.jk.model.TuiHuiGuanLi">
+        SELECT t1.*,t2.`lianxiren`,t3.`kuaidiname` FROM lhl_tuihuiguanli t1,lhl_fahuodianguanli t2,lhl_kuaididanmoban t3
+        WHERE t1.`fahuodianid`=t2.`id` AND t1.`kuaididanid`=t3.`id`
+    </select>
+
+    <select id="toeditbianjituihuo" resultType="com.jk.model.TuiHuiGuanLi">
+        SELECT * from lhl_tuihuiguanli where id = #{id}
+    </select>
+
+    <select id="querywuliugongsi" resultType="com.jk.model.KuaiDiDanmoban">
+        SELECT * from lhl_kuaididanmoban where id = #{kuaididanid}
+    </select>
+
+    <update id="edittuihuoguanli">
+        UPDATE lhl_tuihuiguanli SET peisongfangshi=#{peisongfangshi},createdate=#{createdate} WHERE id= #{id}
+    </update>
+
+    <delete id="deletetuihuoguanli">
+        delete FROM lhl_tuihuiguanli where id in (${id})
+    </delete>
+
+</mapper>

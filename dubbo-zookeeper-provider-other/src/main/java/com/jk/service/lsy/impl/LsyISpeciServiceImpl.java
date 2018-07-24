@@ -5,6 +5,7 @@ import com.jk.mapper.lsy.LsyISpeciMapper;
 import com.jk.model.lsyspecificationEntity;
 import com.jk.model.lsyspecivalueEntity;
 import com.jk.service.lsy.LsyISpeciService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -12,7 +13,7 @@ import java.util.List;
 
 @Service("lsySpeci")
 public class LsyISpeciServiceImpl implements LsyISpeciService{
-    @Resource
+    @Autowired
     private LsyISpeciMapper lsyISpeciMapper;
 
     //查询规格并分页
@@ -30,7 +31,7 @@ public class LsyISpeciServiceImpl implements LsyISpeciService{
             List<lsyspecivalueEntity> ll = lsyISpeciMapper.querySpeciVla(userlist.get(i).getSpeciid());
             String val = "";
             for (int j = 0; j < ll.size(); j++) {
-                val = val + ll.get(i).getName()+",";
+                val = val + ll.get(j).getName()+",";
             }
             userlist.get(i).setSpecivlaues(val);
         }

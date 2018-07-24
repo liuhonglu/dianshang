@@ -51,8 +51,8 @@
 <table class="main">
     <tr>
         <th class="logo">
-            <a href="main.jhtml">
-                <img src="/shopxx/resources/admin/images/header_logo.gif" alt="SHOP++" />
+            <a href="<%=request.getContextPath()%>/Admin/xiangxi.jsp">
+                <img src="<%=request.getContextPath()%>/Admin/images/payment/zhe800.png" width="180px" height="60px" alt="折800 商品管理" />
             </a>
         </th>
         <th>
@@ -80,7 +80,7 @@
                         <a href="#system">系统</a>
                     </li>
                     <li>
-                        <a href="/shopxx/" target="_blank">首页</a>
+                        <a href="<%=request.getContextPath()%>/Admin/shouye1.jsp" target="_blank">首页</a>
                     </li>
                 </ul>
             </div>
@@ -90,7 +90,7 @@
                 <a href="http://www.shopxx.net/about.html" target="_blank">关于我们</a>
             </div>
             <div class="link">
-                <strong>admin</strong>
+                <strong>${activeUser.username}</strong>
                 您好!
                 <a href="../profile/edit.jhtml" target="iframe">[账号设置]</a>
                 <a href="../logout.jsp" target="_top">[注销]</a>
@@ -102,31 +102,31 @@
             <dl id="product" class="default">
                 <dt>商品管理</dt>
                 <dd>
-                    <a href="../product/list.jhtml" target="iframe">商品管理</a>
+                    <a href="<%=request.getContextPath()%>/lhl/toshangpinguanli.jsp" target="iframe">商品管理</a>
                 </dd>
                 <dd>
-                    <a href="../product_category/list.jhtml" target="iframe">商品分类</a>
+                    <a href="<%=request.getContextPath()%>/hddcontroller/toproductcategory.lhtml" target="iframe">商品分类</a>
                 </dd>
                 <dd>
-                    <a href="../parameter_group/list.jhtml" target="iframe">商品参数</a>
+                    <a href="<%=request.getContextPath()%>/szjController/aa.lhtml" target="iframe">商品参数</a>
                 </dd>
                 <dd>
-                    <a href="../attribute/list.jhtml" target="iframe">商品属性</a>
+                    <a href="<%=request.getContextPath()%>/attribute/list.lhtml" target="iframe">商品属性</a>
                 </dd>
                 <dd>
-                    <a href="../specification/list.jhtml" target="iframe">规格管理</a>
+                    <a href="<%=request.getContextPath()%>/LsySpecification/LsySpecifictionShow.jsp" target="iframe">规格管理</a>
                 </dd>
                 <dd>
-                    <a href="../brand/list.jhtml" target="iframe">品牌管理</a>
+                    <a href="<%=request.getContextPath()%>/lxl/Brand.jsp" target="iframe">品牌管理</a>
                 </dd>
                 <dd>
-                    <a href="../product_notify/list.jhtml" target="iframe">到货通知</a>
+                    <a href="#" target="iframe">到货通知</a>
                 </dd>
             </dl>
             <dl id="order">
                 <dt>订单管理</dt>
                 <dd>
-                    <a href="../order/list.jhtml" target="iframe">订单管理</a>
+                    <a href="<%=request.getContextPath()%>/merchandisecontroller/todingdanguanli.lhtml" target="iframe">订单管理</a>
                 </dd>
                 <dd>
                     <a href="../payment/list.jhtml" target="iframe">收款管理</a>
@@ -138,13 +138,13 @@
                     <a href="../shipping/list.jhtml" target="iframe">发货管理</a>
                 </dd>
                 <dd>
-                    <a href="../returns/list.jhtml" target="iframe">退货管理</a>
+                    <a href="<%=request.getContextPath()%>/tuihuocontroller/totuihuoguanli.lhtml" target="iframe">退货管理</a>
                 </dd>
                 <dd>
-                    <a href="../delivery_center/list.jhtml" target="iframe">发货点管理</a>
+                    <a href="<%=request.getContextPath()%>/merchandisecontroller/tofahuodianguanli.lhtml" target="iframe">发货点管理</a>
                 </dd>
                 <dd>
-                    <a href="../delivery_template/list.jhtml" target="iframe">快递单模板</a>
+                    <a href="<%=request.getContextPath()%>/merchandisecontroller/tokuaididanmoban.lhtml" target="iframe">快递单模板</a>
                 </dd>
             </dl>
             <dl id="member">
@@ -281,7 +281,7 @@
             </dl>
         </td>
         <td>
-            <iframe id="iframe" name="iframe" src="index.jhtml" frameborder="0"></iframe>
+            <iframe id="iframe" name="iframe" src="/Admin/xiangxi.jsp" frameborder="0"></iframe>
         </td>
     </tr>
 </table>

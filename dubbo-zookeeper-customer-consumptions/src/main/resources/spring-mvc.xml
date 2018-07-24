@@ -11,6 +11,13 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 	<!-- 自动扫描controller包下的所有类，使其认为spring mvc的控制器 -->
 	<context:component-scan base-package="com.jk.controller" />
 
+	<!-- 开启aop，对类代理 -->
+	<aop:config proxy-target-class="true"></aop:config>
+	<!-- 开启shiro注解支持 -->
+	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+		<property name="securityManager" ref="securityManager" />
+	</bean>
+
 	<!-- 对模型视图名称的解析，即在模型视图名称添加前后缀 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/" p:suffix=".jsp" />
 
@@ -30,5 +37,11 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 			<value>4096</value>
 		</property>
 	</bean>-->
+
+	<!-- 配置solrServer服务，供数据访问层检索数据使用： -->
+	<bean id="solrServer" class="org.apache.solr.client.solrj.impl.HttpSolrClient">
+		<!-- 配置构造方法 -->
+		<constructor-arg value="http://192.168.3.110:8080/solr/my_core"/>
+	</bean>
 
 </beans>

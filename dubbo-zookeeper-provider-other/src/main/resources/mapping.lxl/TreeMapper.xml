@@ -20,4 +20,92 @@
         UPDATE xx_brand2 SET NAME=#{name},TYPE=#{type},logo=#{logo},url=#{url},sorting=#{sorting},introduction=#{introduction}
         WHERE id = #{id}
     </update>
+    <select id="queryConsultationCount" resultType="long">
+        SELECT count(*) FROM xx_consultation a,xx_product xx,hdd_member xxx WHERE a.member = xxx.id AND a.product =
+        xx.id
+        <if test="content != null and content != ''">
+            AND a.content LIKE '%${content}%'
+        </if>
+    </select>
+    <select id="queryConsultation" resultType="com.jk.model.Consultation">
+        SELECT a.id,xx.name,a.content,xxx.username,a.is_show,a.replyConsultations,xxx.create_date FROM
+        xx_consultation a,xx_product xx,hdd_member xxx WHERE a.member = xxx.id AND a.product = xx.id
+        <if test="con.content != null and con.content != ''">
+            AND a.content LIKE '%${con.content}%'
+        </if>
+        limit #{start},#{rows}
+    </select>
+    <delete id="delConsultation">
+        DELETE FROM xx_brand2 WHERE id = #{id}
+    </delete>
+    <update id="editConsultation">
+        UPDATE xx_consultation SET replyconsultations=#{replyconsultations} WHERE id = #{id}
+    </update>
+    <select id="queryByConsultationId" resultType="com.jk.model.Consultation">
+        SELECT a.id,xx.name,a.content,xxx.username,a.is_show,a.replyConsultations,xxx.create_date FROM
+        xx_consultation a,xx_product xx,hdd_member xxx WHERE a.member = xxx.id AND a.product = xx.id
+        AND a.id = #{id}
+    </select>
+    <update id="editConsultation1">
+        UPDATE xx_consultation SET is_show=#{is_show} WHERE id = #{id}
+    </update>
+    <select id="queryByIdConsultation" resultType="com.jk.model.Consultation">
+        SELECT * FROM xx_consultation a,xx_product xx,hdd_member xxx WHERE a.member = xxx.id AND a.product = xx.id
+            AND a.id = #{id}
+    </select>
+    <update id="edit">
+         UPDATE xx_consultation SET replyconsultations=#{replyconsultations} WHERE id = #{id}
+    </update>
+    <select id="queryPromotionCount" resultType="long">
+        SELECT count(*) FROM xx_promotion2 WHERE 1=1
+        <if test="name != null and name != ''">
+            and name LIKE '%${name}%'
+        </if>
+        <if test="title != null and title != ''">
+            and name LIKE '%${title}%'
+        </if>
+    </select>
+    <select id="queryPromotion" resultType="com.jk.model.Promotion">
+        SELECT * FROM xx_promotion2 WHERE 1=1
+        <if test="pro.name != null and pro.name != ''">
+            and name LIKE '%${pro.name}%'
+        </if>
+        <if test="pro.title != null and pro.title != ''">
+            and name LIKE '%${pro.title}%'
+        </if>
+        ORDER BY sort limit #{start},#{rows}
+    </select>
+    <select id="queryPromotionById" resultType="com.jk.model.Promotion">
+        SELECT * FROM xx_promotion2 WHERE id=#{id}
+    </select>
+    <select id="queryBrands" resultType="com.jk.model.Consultation">
+        SELECT xx.name FROM xx_consultation a,xx_product xx,hdd_member xxx WHERE a.member = xxx.id AND a.product = xx.id
+            AND xx.name LIKE '%${name}%'
+    </select>
+    <update id="updatePromotion">
+        UPDATE xx_promotion2 SET NAME=#{name},title=#{title},beginDate=#{beginDate},endDate=#{endDate},minimumQuantity=#{minimumQuantity},
+maximumQuantity=#{maximumQuantity},minimumPrice=#{minimumPrice},maximumPrice=#{maximumPrice},priceExpression=#{priceExpression},pointExpression=#{pointExpression},sort=#{sort},
+memberRanks=#{memberRanks},brands=#{brands},isFreeShipping=#{isFreeShipping},isCouponAllowed=#{isCouponAllowed},introduction=#{introduction} WHERE id = #{id}
+    </update>
+    <select id="queryCoupon" resultType="com.jk.model.Coupon">
+        SELECT * FROM xx_coupon2 WHERE 1=1 limit #{start},#{rows}
+    </select>
+    <select id="queryCouponCount" resultType="long">
+        SELECT COUNT(*) FROM xx_coupon2 WHERE 1=1
+    </select>
+    <delete id="delCou">
+        DELETE FROM xx_coupon2 WHERE id = #{id}
+    </delete>
+    <select id="queryCouById" resultType="com.jk.model.Coupon">
+        SELECT * FROM xx_coupon2 WHERE id = #{id}
+    </select>
+    <update id="editCou">
+        UPDATE xx_coupon2 SET NAME=#{name},beginDate=#{beginDate},endDate=#{endDate},minimumQuantity=#{minimumQuantity},maximumQuantity=#{maximumQuantity},
+        minimumPrice=#{minimumPrice},maximumPrice=#{maximumPrice},priceExpression=#{priceExpression},isEnabled=#{isEnabled},isExchange=#{isExchange},POINT=#{point},introduction=#{introduction},couponCodes=#{couponCodes},
+        promotions=#{promotions},orders=#{orders},prefix=#{prefix} WHERE id = #{id}
+    </update>
+    <insert id="addCou">
+        INSERT INTO xx_coupon2 VALUES(#{id},#{name},#{beginDate},#{endDate},#{minimumQuantity},#{maximumQuantity},#{minimumPrice},
+        #{maximumPrice},#{priceExpression},#{isEnabled},#{isExchange},#{point},#{introduction},#{couponCodes},#{promotions},#{orders},#{prefix})
+    </insert>
 </mapper>

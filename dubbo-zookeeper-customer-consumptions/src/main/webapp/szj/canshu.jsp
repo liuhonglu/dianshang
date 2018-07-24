@@ -14,7 +14,7 @@
 <body>
 
 <div id="tb">
-    <a href="javascript:add()" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true">新增</a>
+    <a href="javascript:add()" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true">添加</a>
 
     <a href="javascript:del(null)" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">删除</a>
 
@@ -22,7 +22,7 @@
 </div>
 
 <table id="dg"></table>
-
+<jsp:include page="/js/jsAll.jsp"></jsp:include>
 <div id="dd"></div>
 <script>
     function add(){

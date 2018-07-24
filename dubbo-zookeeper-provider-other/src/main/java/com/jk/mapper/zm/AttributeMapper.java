@@ -9,9 +9,9 @@ import java.util.List;
 @Repository
 public interface AttributeMapper {
     //数据总条数
-    Long count(@Param("name") String name);
+    long count(@Param("name") String name);
     //查询列表
     List<Attribute> querylist(@Param("name") String name, @Param("s") Integer s, @Param("rows") Integer rows);
 
-    List<String> queryoption(@Param("id") Integer id);
+    List queryoption(@Param("id") Integer id);
 }

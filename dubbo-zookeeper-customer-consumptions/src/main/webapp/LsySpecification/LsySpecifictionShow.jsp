@@ -38,6 +38,7 @@
     </div>
 </div>
 
+<jsp:include page="/js/jsAll.jsp"></jsp:include>
 <script type="text/javascript">
     $(function(){
         seracher();

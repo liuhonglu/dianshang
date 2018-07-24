@@ -10,7 +10,8 @@
 <%--
     <a href="<%=request.getContextPath()%>/hddcontroller/addtopc.lhtml" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true">新增</a>
 --%>
-    <a href="javascript:saveaddpc()" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true">新增</a>
+    <a href="javascript:saveaddpc()" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true">添加</a>
+    <a href="javascript:queryLeaseHouse()" class="easyui-linkbutton" data-options="iconCls:'icon-reload',plain:true">刷新</a>
 
 
    <table id="productcategoryhdd"></table>
@@ -18,7 +19,7 @@
 
     <div id="hddproductcategory"></div><%--弹框--%>
 
-
+<jsp:include page="/js/jsAll.jsp"></jsp:include>
 <script type="text/javascript">
     $(function(){
         queryLeaseHouse();

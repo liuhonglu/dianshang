@@ -11,11 +11,12 @@
     </select>
     
     <delete id="deleteproduct">
-        delete from lhl_product where sn in (#{id})
+        delete from lhl_product where sn in (${id})
     </delete>
     
     <insert id="insertproduct">
-        insert into lhl_product values(#{product.sn},#{product.name},#{product.procount},#{product.xiaoshoujia},#{product.chengbenjia},#{product.kecun},#{product.shangjia},#{product.createtime});
+        INSERT INTO lhl_product(sn,NAME,protype,xiaoshoujia,chengbenjia,kecun,shangjia,createtime,images)
+        VALUES(#{product.sn},#{product.name},#{product.protype},#{product.chengbenjia},#{product.xiaoshoujia},#{product.kecun},#{product.shangjia},#{product.createtime},#{product.images});
     </insert>
 
     <select id="queryproductbyid" resultType="com.jk.model.Product">
@@ -23,7 +24,43 @@
     </select>
     
     <update id="updateproduct">
-        UPDATE lhl_product set name=,#{product.name},procount=#{product.procount},xiaoshoujia=#{product.xiaoshoujia},chengbenjia=#{product.chengbenjia},kecun=#{product.kecun},shangjia=#{product.shangjia},createtime=#{product.createtime} where sn = #{product.sn}
+        UPDATE lhl_product set name=#{product.name},protype=#{product.protype},xiaoshoujia=#{product.xiaoshoujia},chengbenjia=#{product.chengbenjia},kecun=#{product.kecun},shangjia=#{product.shangjia},createtime=#{product.createtime},images=#{product.images} where sn = #{product.sn}
     </update>
+
+    <select id="queryyishangjia" resultType="com.jk.model.Product">
+         SELECT * FROM lhl_product where shangjia = 1
+    </select>
+
+    <select id="weishengjia" resultType="com.jk.model.Product">
+        SELECT * FROM lhl_product where shangjia = 2
+    </select>
+
+    <select id="lianyiqun" resultType="com.jk.model.Product">
+        SELECT * FROM lhl_product where protype = 3
+    </select>
+
+    <select id="chenyi" resultType="com.jk.model.Product">
+        SELECT * FROM lhl_product where protype = 1
+    </select>
+
+    <select id="sushenyi" resultType="com.jk.model.Product">
+        SELECT * FROM lhl_product where protype = 4
+    </select>
+
+    <select id="shuiyi" resultType="com.jk.model.Product">
+        SELECT * FROM lhl_product where protype = 5
+    </select>
+
+    <select id="kuzi" resultType="com.jk.model.Product">
+        SELECT * FROM lhl_product where protype = 2
+    </select>
+
+    <select id="xiaoxizhuang" resultType="com.jk.model.Product">
+        SELECT * FROM lhl_product where protype = 6
+    </select>
+
+    <select id="tixu" resultType="com.jk.model.Product">
+        SELECT * FROM lhl_product where protype = 7
+    </select>
 
 </mapper>

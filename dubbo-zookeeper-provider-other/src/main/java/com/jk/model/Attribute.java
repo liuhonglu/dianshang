@@ -5,6 +5,7 @@
  */
 package com.jk.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,10 +15,10 @@ import java.util.List;
  * @author SHOP++ Team
  * @version 3.0
  */
-public class Attribute{
+public class Attribute implements Serializable {
 
-	private static final long serialVersionUID = 2447794131117928367L;
 
+	private static final long serialVersionUID = 6547098564992278898L;
 	private Integer id;
 
 	/** 名称 */
